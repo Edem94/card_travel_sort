@@ -90,7 +90,7 @@ sorter.printItinerary();
 
 #### CardTravelSort(cards)
 
-Метод-конструктор. `cards` - необязательный параметр. Если он передан, `importCard` будет вызван автоматически.
+Метод-конструктор `cards` - необязательный параметр. Если он передан, `importCard` будет вызван автоматически.
 
 
 #### CardTravelSort.importCard(cards)
