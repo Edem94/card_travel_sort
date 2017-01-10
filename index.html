@@ -4,21 +4,21 @@
     <title>Сортировщик карточек путешественника</title>
   </head>
   <body>
-    <a href="https://github.com/marksurnin/travelcard-sorter">Source code</a><br><br>
+    <a href="https://github.com/Edem94/card_travel_sort">Source code</a><br><br>
 
     <script type="text/javascript" src="CardTravelSort.js"></script>
     <script type="text/javascript">
       var cards = [
         {
           origin: {
-            name: 'Barcelona',
+            name: 'Madrid',
             location: {
               lat: 43.449028,
               lng: -80.49168499999999
             }
           },
           destination: {
-            name: 'Gerona Airport',
+            name: 'Barahas Airport',
             location: {
               lat: 43.449028,
               lng: -80.49168499999999
@@ -59,14 +59,14 @@
         },
         {
           origin: {
-            name: 'Madrid',
+            name: 'Barcelona',
             location: {
               lat: 43.449028,
               lng: -80.49168499999999
             }
           },
           destination: {
-            name: 'Barcelona',
+            name: 'Madrid',
             location: {
               lat: 43.449028,
               lng: -80.49168499999999
@@ -155,7 +155,7 @@
         },
         {
           origin: {
-            name: 'Gerona Airport',
+            name: 'Barahas Airport',
             location: {
               lat: 43.449028,
               lng: -80.49168499999999
@@ -179,9 +179,9 @@
         }
       ];
       var main = function () {
-        var sorter = new TravelCardSorter();
-        sorter.importCards(cards);
-        sorter.sortCards();
+        var sorter = new CardTravelSort();
+        sorter.importCard(cards);
+        sorter.sortCard();
         sorter.printItinerary();
       }
       document.addEventListener("DOMContentLoaded", main);
