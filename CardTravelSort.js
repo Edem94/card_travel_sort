@@ -8,14 +8,14 @@
  * Контекст определен в каждой функции - решение для проблемы с контекстом в forEach.
  */
 
-function TravelCardSorter(data) {
+function CardTravelSort(data) {
   var ctx = this;
   ctx.trip = [];
   ctx.cards = [];
   ctx.hashTable = {};
 
   if (data) {
-    ctx.importCards(data);
+    ctx.importCard(data);
   }
 
   return ctx;
@@ -38,7 +38,7 @@ function TravelCardSorter(data) {
     2) ctx.cards[индекс]
  */
 
-TravelCardSorter.prototype.buildHashTable = function() {
+CardTravelSort.prototype.buildHashTable = function() {
   var ctx = this;
   ctx.cards.forEach(function(card, i) {
     ctx.hashTable[card.origin.name] = i;
@@ -50,11 +50,11 @@ TravelCardSorter.prototype.buildHashTable = function() {
  * Импорт карточек
  * @param {Array} data - неупорядоченный массив карточек 
  *
- * Копирует данные из data в cards (cвойство TravelCardSorter).
+ * Копирует данные из data в cards (cвойство CardTravelSort).
  * Здесь же вызывается buildHashTable();
  */
 
-TravelCardSorter.prototype.importCards = function(data) {
+CardTravelSort.prototype.importCard = function(data) {
   var ctx = this;
 
   // Reset the cards Array
@@ -85,7 +85,7 @@ TravelCardSorter.prototype.importCards = function(data) {
  * Временная сложность - О(2n) = O(n).
  */
 
-TravelCardSorter.prototype.findDepartureCard = function() {
+CardTravelSort.prototype.findDepartureCard = function() {
   var ctx = this;
   var destinations = [];
 
@@ -114,7 +114,7 @@ TravelCardSorter.prototype.findDepartureCard = function() {
  * Временная сложность - О(1) * n = O(n).
  */
 
-TravelCardSorter.prototype.sortCards = function() {
+CardTravelSort.prototype.sortCard = function() {
   var ctx = this;
   ctx.departureCard = ctx.findDepartureCard();
 
@@ -139,7 +139,7 @@ TravelCardSorter.prototype.sortCards = function() {
  * Временная сложность - О(1) * n = O(n).
  */
 
-TravelCardSorter.prototype.printItinerary = function() {
+CardTravelSort.prototype.printItinerary = function() {
   var ctx = this;
 
   // Вспомогательная функция для вывода информации о месте в транспорте.
