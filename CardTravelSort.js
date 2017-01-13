@@ -9,16 +9,16 @@
  */
 
 function CardTravelSort(data) {
-  var ctx = this;
-  ctx.trip = [];
-  ctx.cards = [];
-  ctx.hashTable = {};
+  var cts = this;
+  cts.trip = [];
+  cts.cards = [];
+  cts.hashTable = {};
 
   if (data) {
-    ctx.importCard(data);
+    cts.importCard(data);
   }
 
-  return ctx;
+  return cts;
 }
 
 
@@ -35,13 +35,13 @@ function CardTravelSort(data) {
  *  }
  Например, имея карточку Мадрид-Барселона, следующая находится вот так:
     1) Индекс пункта назначения (Барселоны) - 1.
-    2) ctx.cards[индекс]
+    2) cts.cards[индекс]
  */
 
 CardTravelSort.prototype.buildHashTable = function() {
-  var ctx = this;
-  ctx.cards.forEach(function(card, i) {
-    ctx.hashTable[card.origin.name] = i;
+  var cts = this;
+  cts.cards.forEach(function(card, i) {
+    cts.hashTable[card.origin.name] = i;
   });
 }
 
@@ -55,10 +55,10 @@ CardTravelSort.prototype.buildHashTable = function() {
  */
 
 CardTravelSort.prototype.importCard = function(data) {
-  var ctx = this;
+  var cts = this;
 
   // Reset the cards Array
-  ctx.cards = [];
+  cts.cards = [];
 
   if (data instanceof Array) {
 
@@ -70,10 +70,10 @@ CardTravelSort.prototype.importCard = function(data) {
         console.error('destination.name property is missing in ' + JSON.stringify(card));
       }
     })
-    ctx.cards = data;
+    cts.cards = data;
   }
 
-  ctx.buildHashTable();
+  cts.buildHashTable();
 }
 
 
@@ -86,16 +86,16 @@ CardTravelSort.prototype.importCard = function(data) {
  */
 
 CardTravelSort.prototype.findDepartureCard = function() {
-  var ctx = this;
+  var cts = this;
   var destinations = [];
 
-  ctx.cards.forEach(function(card) {
+  cts.cards.forEach(function(card) {
     destinations.push(card.destination.name);
   });
 
-  ctx.cards.forEach(function(card) {
+  cts.cards.forEach(function(card) {
     if (destinations.indexOf(card.origin.name) === -1) {
-      ctx.trip.push(card);
+      cts.trip.push(card);
     }
   });
 
@@ -115,14 +115,14 @@ CardTravelSort.prototype.findDepartureCard = function() {
  */
 
 CardTravelSort.prototype.sortCard = function() {
-  var ctx = this;
-  ctx.departureCard = ctx.findDepartureCard();
+  var cts = this;
+  cts.departureCard = cts.findDepartureCard();
 
-  for (var i = 0; i < ctx.cards.length - 1; i++) {
-    var currentCard = ctx.trip[i];
-    var nextCardIndex = ctx.hashTable[currentCard.destination.name];
+  for (var i = 0; i < cts.cards.length - 1; i++) {
+    var currentCard = cts.trip[i];
+    var nextCardIndex = cts.hashTable[currentCard.destination.name];
     var nextCard = cards[nextCardIndex];
-    ctx.trip.push(nextCard);
+    cts.trip.push(nextCard);
   }
 }
 
@@ -140,7 +140,7 @@ CardTravelSort.prototype.sortCard = function() {
  */
 
 CardTravelSort.prototype.printItinerary = function() {
-  var ctx = this;
+  var cts = this;
 
   // Вспомогательная функция для вывода информации о месте в транспорте.
   var printSeat = function(card) {
@@ -154,7 +154,7 @@ CardTravelSort.prototype.printItinerary = function() {
   // Создает элемент для вывода маршрута.
   var itinerary = document.createElement('div');
 
-  ctx.trip.forEach(function(card) {
+  cts.trip.forEach(function(card) {
     var cardDirections = '';
 
     switch (card.transport.type) {
